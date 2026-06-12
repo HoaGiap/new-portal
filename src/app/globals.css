@@ -1,26 +1,202 @@
 @import "tailwindcss";
 
+@theme {
+  --color-primary: #00BD7D;
+  --color-primary-dark: #009a65;
+  --color-accent: #00BD7D;
+  
+  --color-bg-dark: #09090b;
+  --color-bg-card: #18181b;
+  --color-bg-card-hover: #27272a;
+  --color-border-base: #27272a;
+  
+  --font-oswald: var(--font-oswald);
+  --font-poppins: var(--font-poppins);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --primary: #00BD7D;
+  --primary-dark: #009a65;
+  --accent: #00BD7D;
+  --bg-dark: #09090b;
+  --bg-card: #18181b;
+  --bg-card-hover: #27272a;
+  --text-primary: #f4f4f5;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --border: #27272a;
+  --border-light: #3f3f46;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-poppins), sans-serif;
+  line-height: 1.6;
+}
+
+/* Headings use Oswald */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-oswald), sans-serif;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Article content styles */
+.article-content h2 {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 2rem 0 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--primary);
+  text-transform: uppercase;
+}
+
+.article-content h3 {
+  font-family: var(--font-oswald), sans-serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 1.75rem 0 0.75rem;
+  text-transform: uppercase;
+}
+
+.article-content p {
+  font-family: var(--font-poppins), sans-serif;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 1.05rem;
+  line-height: 1.85;
+}
+
+.article-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.article-content ul,
+.article-content ol {
+  color: var(--text-secondary);
+  margin: 1rem 0 1.5rem 1.5rem;
+  line-height: 1.8;
+}
+
+.article-content li {
+  margin-bottom: 0.5rem;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(0, 189, 125, 0);
+  }
+  50% {
+    box-shadow: 0 0 20px 4px rgba(0, 189, 125, 0.25);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--bg-card) 25%, var(--bg-card-hover) 50%, var(--bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Perspective Elevation & Hover Classes */
+.layer-0 {
+  background-color: #09090b;
+}
+
+.layer-1 {
+  background-color: #18181b;
+  border: 1px solid #27272a;
+}
+
+.layer-2 {
+  background-color: #27272a;
+  border: 1px solid #3f3f46;
+}
+
+/* Card hover glow */
+.card-glow:hover {
+  box-shadow: 0 8px 30px rgba(0, 189, 125, 0.12);
+  border-color: rgba(0, 189, 125, 0.4);
+}
+
+/* Fallback utilities to ensure bg-primary and text-primary resolve correctly */
+.bg-primary {
+  background-color: #00BD7D !important;
+}
+.text-primary {
+  color: #00BD7D !important;
+}
+.border-primary {
+  border-color: #00BD7D !important;
+}
+.hover\:bg-primary-dark:hover {
+  background-color: #009a65 !important;
 }
