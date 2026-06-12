@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useArticles } from '@/context/ArticlesContext';
 import { CATEGORIES } from '@/data/articles';
 import Link from 'next/link';
+import { Plus, Search, Eye, Pencil, Trash2, Inbox } from 'lucide-react';
 
 export default function AdminArticlesPage() {
   const { articles, deleteArticle } = useArticles();
@@ -59,9 +60,7 @@ export default function AdminArticlesPage() {
           href="/admin/articles/new"
           className="flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary-dark text-black text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-md shadow-primary/10 font-oswald flex-shrink-0"
         >
-          <svg className="w-4 h-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
-          </svg>
+          <Plus className="w-4 h-4 text-black" />
           Thêm Bài Mới
         </Link>
       </div>
@@ -71,9 +70,7 @@ export default function AdminArticlesPage() {
         <div className="flex flex-col md:flex-row gap-3">
           {/* Search */}
           <div className="relative flex-1">
-            <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
             <input
               type="text"
               value={search}
@@ -118,7 +115,7 @@ export default function AdminArticlesPage() {
       <div className="layer-1 rounded-2xl overflow-hidden shadow-xl">
         {filtered.length === 0 ? (
           <div className="text-center py-16">
-            <div className="text-5xl mb-3">📭</div>
+            <div className="text-5xl mb-3 flex justify-center text-zinc-500"><Inbox className="w-12 h-12" /></div>
             <p className="text-white font-bold mb-1 font-oswald uppercase">Không tìm thấy bài viết</p>
             <p className="text-zinc-400 text-xs">Thử tìm kiếm với từ khóa khác hoặc thêm bài viết mới.</p>
           </div>
@@ -167,7 +164,7 @@ export default function AdminArticlesPage() {
                       </div>
                     </td>
                     <td className="px-5 py-4 hidden lg:table-cell">
-                      <span className="text-xs font-semibold text-zinc-350">👁 {article.views.toLocaleString()}</span>
+                      <span className="text-xs font-semibold text-zinc-350 flex items-center gap-1"><Eye className="w-3.5 h-3.5 text-zinc-500" /> {article.views.toLocaleString()}</span>
                     </td>
                     <td className="px-5 py-4 hidden sm:table-cell">
                       <span className="text-[11px] font-medium text-zinc-400 whitespace-nowrap">
@@ -179,31 +176,24 @@ export default function AdminArticlesPage() {
                         <Link
                           href={`/post/${article.id}`}
                           target="_blank"
-                          className="p-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-primary hover:border-primary/25 transition-all"
+                          className="p-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-primary hover:border-primary/25 transition-all flex items-center justify-center"
                           title="Xem trước"
                         >
-                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                          </svg>
+                          <Eye className="w-4 h-4" />
                         </Link>
                         <Link
                           href={`/admin/articles/edit/${article.id}`}
-                          className="p-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-emerald-400 hover:border-emerald-500/25 transition-all"
+                          className="p-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-emerald-450 hover:border-emerald-500/25 transition-all flex items-center justify-center"
                           title="Chỉnh sửa"
                         >
-                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                          </svg>
+                          <Pencil className="w-4 h-4" />
                         </Link>
                         <button
                           onClick={() => confirmDelete(article.id)}
-                          className="p-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-red-400 hover:border-red-500/25 transition-all"
+                          className="p-1.5 rounded-lg border border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-red-400 hover:border-red-500/25 transition-all flex items-center justify-center"
                           title="Xóa"
                         >
-                          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                          </svg>
+                          <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
                     </td>
@@ -219,7 +209,7 @@ export default function AdminArticlesPage() {
       {deleteId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm animate-fade-in">
           <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 max-w-sm w-full shadow-2xl">
-            <div className="text-4xl mb-4 text-center">🗑️</div>
+            <div className="text-4xl mb-4 text-center flex justify-center text-red-500"><Trash2 className="w-10 h-10 animate-bounce" /></div>
             <h3 className="text-lg font-bold text-white text-center mb-2 font-oswald uppercase">Xác nhận xóa</h3>
             <p className="text-zinc-400 text-xs text-center mb-6 leading-relaxed">
               Bạn có chắc muốn xóa bài viết này? Hành động này không thể hoàn tác.

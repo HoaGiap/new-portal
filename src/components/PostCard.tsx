@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { Article } from '@/data/articles';
+import { Calendar, Eye } from 'lucide-react';
 
 interface PostCardProps {
   article: Article;
@@ -68,7 +69,9 @@ export default function PostCard({ article, variant = 'default', index = 0 }: Po
               {article.title}
             </h4>
           </Link>
-          <p className="text-[11px] text-zinc-500 mt-1">📅 {formatDate(article.publishedAt)}</p>
+          <p className="text-[11px] text-zinc-500 mt-1 flex items-center gap-1">
+            <Calendar className="w-3 h-3 text-zinc-400" /> {formatDate(article.publishedAt)}
+          </p>
         </div>
       </article>
     );
@@ -104,8 +107,8 @@ export default function PostCard({ article, variant = 'default', index = 0 }: Po
               <span className="font-semibold">{article.author}</span>
             </span>
             <div className="flex items-center gap-3 font-medium">
-              <span>📅 {formatDate(article.publishedAt)}</span>
-              <span>👁 {formatViews(article.views)} lượt xem</span>
+              <span className="flex items-center gap-1"><Calendar className="w-3.5 h-3.5" /> {formatDate(article.publishedAt)}</span>
+              <span className="flex items-center gap-1"><Eye className="w-3.5 h-3.5" /> {formatViews(article.views)} lượt xem</span>
             </div>
           </div>
         </div>
@@ -128,9 +131,9 @@ export default function PostCard({ article, variant = 'default', index = 0 }: Po
           </h3>
         </Link>
         <div className="flex items-center gap-3 mt-2 text-zinc-500 text-xs">
-          <span>📅 {formatDate(article.publishedAt)}</span>
+          <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {formatDate(article.publishedAt)}</span>
           <span>•</span>
-          <span>👁 {formatViews(article.views)} xem</span>
+          <span className="flex items-center gap-1"><Eye className="w-3 h-3" /> {formatViews(article.views)} xem</span>
         </div>
       </article>
     );
@@ -169,9 +172,9 @@ export default function PostCard({ article, variant = 'default', index = 0 }: Po
             <span className="truncate max-w-[100px] font-semibold">{article.author}</span>
           </span>
           <div className="flex items-center gap-2">
-            <span>📅 {formatDate(article.publishedAt)}</span>
+            <span className="flex items-center gap-1"><Calendar className="w-3 h-3" /> {formatDate(article.publishedAt)}</span>
             <span>•</span>
-            <span>👁 {formatViews(article.views)}</span>
+            <span className="flex items-center gap-1"><Eye className="w-3 h-3" /> {formatViews(article.views)}</span>
           </div>
         </div>
       </div>

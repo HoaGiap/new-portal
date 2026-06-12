@@ -5,6 +5,7 @@ import { CATEGORIES } from '@/data/articles';
 import PostCard from '@/components/PostCard';
 import PublicLayout from '@/components/PublicLayout';
 import Link from 'next/link';
+import { ChevronRight, Eye, Laptop, Plane, Trophy, Mail } from 'lucide-react';
 
 export default function HomePage() {
   const { articles } = useArticles();
@@ -116,9 +117,7 @@ export default function HomePage() {
                   className="text-primary hover:text-primary-dark text-xs font-bold uppercase tracking-wider flex items-center gap-1 transition-colors font-plus-jakarta"
                 >
                   Tất Cả
-                  <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                  </svg>
+                  <ChevronRight className="w-3.5 h-3.5" />
                 </Link>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -150,7 +149,9 @@ export default function HomePage() {
                         >
                           {article.title}
                         </Link>
-                        <p className="text-[10px] text-zinc-500 mt-1 font-semibold uppercase tracking-wider font-plus-jakarta">👁 {article.views.toLocaleString()} lượt xem</p>
+                        <p className="text-[10px] text-zinc-555 dark:text-zinc-500 mt-1 font-semibold uppercase tracking-wider font-plus-jakarta flex items-center gap-1">
+                          <Eye className="w-3 h-3 text-zinc-500" /> {article.views.toLocaleString()} lượt xem
+                        </p>
                       </div>
                     </div>
                   ))}
@@ -187,7 +188,7 @@ export default function HomePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between pb-3 border-b border-border-base/60">
                 <h3 className="text-xl font-black text-fg-main font-plus-jakarta uppercase tracking-tight flex items-center gap-2">
-                  <span>💻</span> Công Nghệ
+                  <Laptop className="w-5 h-5 text-primary" /> Công Nghệ
                 </h3>
                 <Link href="/category/cong-nghe" className="text-xs font-bold text-primary uppercase tracking-wider font-plus-jakarta">Xem thêm</Link>
               </div>
@@ -204,7 +205,7 @@ export default function HomePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between pb-3 border-b border-border-base/60">
                 <h3 className="text-xl font-black text-fg-main font-plus-jakarta uppercase tracking-tight flex items-center gap-2">
-                  <span>✈️</span> Du Lịch
+                  <Plane className="w-5 h-5 text-primary" /> Du Lịch
                 </h3>
                 <Link href="/category/du-lich" className="text-xs font-bold text-primary uppercase tracking-wider font-plus-jakarta">Xem thêm</Link>
               </div>
@@ -221,7 +222,7 @@ export default function HomePage() {
             <div className="space-y-6">
               <div className="flex items-center justify-between pb-3 border-b border-border-base/60">
                 <h3 className="text-xl font-black text-fg-main font-plus-jakarta uppercase tracking-tight flex items-center gap-2">
-                  <span>⚽</span> Thể Thao
+                  <Trophy className="w-5 h-5 text-primary" /> Thể Thao
                 </h3>
                 <Link href="/category/the-thao" className="text-xs font-bold text-primary uppercase tracking-wider font-plus-jakarta">Xem thêm</Link>
               </div>
@@ -241,8 +242,8 @@ export default function HomePage() {
         <div className="absolute bottom-0 right-0 w-32 h-32 bg-accent/10 rounded-full blur-3xl pointer-events-none" />
         
         <div className="max-w-2xl mx-auto text-center space-y-6 relative z-10">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-card border border-border-base text-2xl shadow-sm">
-            ✉️
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-card border border-border-base text-primary shadow-sm">
+            <Mail className="w-5 h-5" />
           </div>
           <h2 className="text-2xl md:text-3xl font-black text-fg-main font-plus-jakarta uppercase tracking-tight">Đăng Ký Nhận Bản Tin</h2>
           <p className="text-zinc-550 dark:text-zinc-400 text-sm max-w-md mx-auto leading-relaxed">

@@ -6,6 +6,7 @@ import { useArticles } from '@/context/ArticlesContext';
 import { CATEGORIES } from '@/data/articles';
 import PostCard from '@/components/PostCard';
 import PublicLayout from '@/components/PublicLayout';
+import { Search, X } from 'lucide-react';
 
 function SearchContent() {
   const searchParams = useSearchParams();
@@ -53,16 +54,14 @@ function SearchContent() {
         <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
         
         <div className="max-w-3xl mx-auto text-center relative z-10 space-y-6">
-          <h1 className="text-3xl font-black text-fg-main font-plus-jakarta uppercase tracking-tight">
-            🔍 Tìm Kiếm Tin Tức
+          <h1 className="text-3xl font-black text-fg-main font-plus-jakarta uppercase tracking-tight flex items-center justify-center gap-2">
+            <Search className="w-8 h-8 text-primary" /> Tìm Kiếm Tin Tức
           </h1>
           <p className="text-zinc-550 dark:text-zinc-400 text-xs font-semibold uppercase tracking-wider font-plus-jakarta">Khám phá hàng nghìn bài viết từ nhiều chủ đề</p>
 
           <form onSubmit={handleSearch} className="flex gap-3 max-w-xl mx-auto">
             <div className="relative flex-1">
-              <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
               <input
                 id="search-input"
                 type="text"
@@ -78,7 +77,7 @@ function SearchContent() {
                   onClick={() => { setInputValue(''); setHasSearched(false); setResults([]); }}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-fg-main text-sm"
                 >
-                  ✕
+                  <X className="w-4 h-4" />
                 </button>
               )}
             </div>
@@ -165,7 +164,7 @@ function SearchContent() {
                 </div>
               ) : (
                 <div className="text-center py-16 bg-card border border-border-base max-w-md mx-auto p-6 rounded-2xl shadow-premium">
-                  <div className="text-5xl mb-4">🔍</div>
+                  <Search className="w-12 h-12 text-zinc-500 mx-auto mb-4" />
                   <h3 className="text-lg font-bold text-fg-main mb-2 font-plus-jakarta uppercase">Không tìm thấy kết quả</h3>
                   <p className="text-zinc-500 dark:text-zinc-400 text-xs mb-6 leading-relaxed">Hãy thử tìm kiếm với các từ khóa khác hoặc tham khảo các bài viết nổi bật bên dưới.</p>
                 </div>

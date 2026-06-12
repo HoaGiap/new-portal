@@ -3,11 +3,12 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { LayoutDashboard, FileText, PenSquare, Home, ChevronLeft, ChevronRight, Settings } from 'lucide-react';
 
 const navItems = [
-  { href: '/admin', label: 'Dashboard', icon: '📊', exact: true },
-  { href: '/admin/articles', label: 'Bài viết', icon: '📰' },
-  { href: '/admin/articles/new', label: 'Thêm bài viết', icon: '✏️' },
+  { href: '/admin', label: 'Dashboard', icon: <LayoutDashboard className="w-4 h-4" />, exact: true },
+  { href: '/admin/articles', label: 'Bài viết', icon: <FileText className="w-4 h-4" /> },
+  { href: '/admin/articles/new', label: 'Thêm bài viết', icon: <PenSquare className="w-4 h-4" /> },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -45,14 +46,15 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             className="p-1 rounded-lg hover:bg-zinc-800 border border-transparent hover:border-zinc-800/80 text-zinc-400 hover:text-white transition-all hidden md:block"
             title={isCollapsed ? 'Mở rộng menu' : 'Thu gọn menu'}
           >
-            {isCollapsed ? '➡️' : '⬅️'}
+            {isCollapsed ? <ChevronRight className="w-4 h-4 mx-auto" /> : <ChevronLeft className="w-4 h-4" />}
           </button>
         </div>
 
         {/* Panel Badge */}
         {!isCollapsed && (
-          <div className="mx-4 mt-4 px-2 py-1.5 bg-primary/10 border border-primary/20 rounded-lg text-center">
-            <p className="text-[10px] text-primary font-black uppercase tracking-wider font-plus-jakarta">⚙️ Admin Panel</p>
+          <div className="mx-4 mt-4 px-2 py-1.5 bg-primary/10 border border-primary/20 rounded-lg text-center flex items-center justify-center gap-1.5">
+            <Settings className="w-3.5 h-3.5 text-primary animate-spin-slow" />
+            <p className="text-[10px] text-primary font-black uppercase tracking-wider font-plus-jakarta">Admin Panel</p>
           </div>
         )}
 
@@ -71,7 +73,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 } ${isCollapsed ? 'p-3 justify-center' : 'px-3.5 py-3 gap-3'}`}
                 title={isCollapsed ? item.label : undefined}
               >
-                <span className="text-base">{item.icon}</span>
+                <span className="flex items-center justify-center">{item.icon}</span>
                 {!isCollapsed && <span>{item.label}</span>}
               </Link>
             );
@@ -87,7 +89,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             }`}
             title={isCollapsed ? 'Về Trang Chủ' : undefined}
           >
-            <span className="text-base">🏠</span>
+            <Home className="w-4 h-4 text-zinc-400 group-hover:text-white transition-colors" />
             {!isCollapsed && <span>Về Trang Chủ</span>}
           </Link>
         </div>

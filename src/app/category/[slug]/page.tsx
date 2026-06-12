@@ -8,6 +8,7 @@ import PublicLayout from '@/components/PublicLayout';
 import Link from 'next/link';
 import { useState } from 'react';
 import { notFound } from 'next/navigation';
+import { ChevronRight, RotateCw, Inbox } from 'lucide-react';
 
 const ITEMS_PER_PAGE = 6;
 
@@ -68,9 +69,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-xs mb-2 uppercase font-bold tracking-wider font-plus-jakarta text-zinc-500">
             <Link href="/" className="hover:text-primary transition-colors">Trang Chủ</Link>
-            <svg className="w-3.5 h-3.5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
+            <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
             <span className={colors.text}>{category.name}</span>
           </nav>
 
@@ -134,7 +133,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
         <div className="max-w-7xl mx-auto">
           {sorted.length === 0 ? (
             <div className="text-center py-20 bg-card border border-border-base rounded-2xl max-w-lg mx-auto p-8 shadow-premium">
-              <div className="text-5xl mb-4">📭</div>
+              <Inbox className="w-12 h-12 text-zinc-500 mx-auto mb-4" />
               <h2 className="text-xl font-bold text-fg-main mb-2 font-plus-jakarta uppercase">Chưa có bài viết nào</h2>
               <p className="text-zinc-500 dark:text-zinc-400 text-xs mb-6">Chủ đề này hiện tại chưa được cập nhật bài viết mới. Vui lòng quay lại sau!</p>
               <Link href="/" className="inline-block px-5 py-2.5 bg-gradient-to-r from-primary to-accent hover:opacity-95 text-white text-xs font-black uppercase tracking-wider rounded-xl transition-colors font-plus-jakarta">
@@ -159,9 +158,7 @@ export default function CategoryPage({ params }: { params: Promise<{ slug: strin
                     onClick={() => setPage((p) => p + 1)}
                     className="px-6 py-3 bg-gradient-to-r from-primary to-accent hover:opacity-95 text-white text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-lg glow-primary flex items-center gap-2 font-plus-jakarta"
                   >
-                    <svg className="w-4 h-4 animate-pulse text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-                    </svg>
+                    <RotateCw className="w-4 h-4 text-white animate-pulse" />
                     Tải Thêm Bài Viết
                   </button>
                 )}

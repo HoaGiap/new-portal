@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CATEGORIES } from '@/data/articles';
 import RichTextEditor from './RichTextEditor';
+import { Loader2, Check } from 'lucide-react';
 
 interface ArticleFormData {
   title: string;
@@ -246,17 +247,12 @@ export default function ArticleForm({ initialData, onSubmit, isEdit = false }: A
         >
           {loading ? (
             <>
-              <svg className="w-4 h-4 animate-spin text-black" viewBox="0 0 24 24" fill="none">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-              </svg>
+              <Loader2 className="w-4 h-4 animate-spin text-black" />
               Đang lưu...
             </>
           ) : (
             <>
-              <svg className="w-4 h-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-              </svg>
+              <Check className="w-4 h-4 text-black" strokeWidth={2.5} />
               {isEdit ? 'Cập Nhật Bài Viết' : 'Đăng Bài Viết'}
             </>
           )}

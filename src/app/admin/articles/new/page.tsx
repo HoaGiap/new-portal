@@ -5,6 +5,7 @@ import { useArticles } from '@/context/ArticlesContext';
 import { CATEGORIES } from '@/data/articles';
 import ArticleForm from '@/components/ArticleForm';
 import Link from 'next/link';
+import { ChevronLeft } from 'lucide-react';
 
 export default function NewArticlePage() {
   const router = useRouter();
@@ -52,9 +53,7 @@ export default function NewArticlePage() {
           href="/admin/articles"
           className="p-2 rounded-xl text-zinc-400 hover:text-white hover:bg-zinc-900 border border-zinc-850 transition-all"
         >
-          <svg className="w-5 h-5 text-current" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-          </svg>
+          <ChevronLeft className="w-5 h-5 text-current" />
         </Link>
         <div>
           <h2 className="text-2xl font-black text-white font-oswald uppercase tracking-tight">Thêm Bài Viết Mới</h2>

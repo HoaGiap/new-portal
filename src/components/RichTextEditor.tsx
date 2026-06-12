@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { Bold, Italic, Underline, Heading2, Heading3, Pilcrow, List, ListOrdered, Link as LinkIcon, Quote, Eraser, Eye, Code } from 'lucide-react';
 
 interface RichTextEditorProps {
   value: string;
@@ -75,30 +76,30 @@ export default function RichTextEditor({
           <button
             type="button"
             onClick={() => executeCommand('bold')}
-            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center font-bold text-sm"
+            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center font-bold"
             title="Đậm (Ctrl+B)"
           >
-            B
+            <Bold className="w-4 h-4" />
           </button>
           
           {/* Italic */}
           <button
             type="button"
             onClick={() => executeCommand('italic')}
-            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center italic text-sm font-serif"
+            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center italic"
             title="Nghiêng (Ctrl+I)"
           >
-            I
+            <Italic className="w-4 h-4" />
           </button>
 
           {/* Underline */}
           <button
             type="button"
             onClick={() => executeCommand('underline')}
-            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center underline text-sm font-serif"
+            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center underline"
             title="Gạch chân (Ctrl+U)"
           >
-            U
+            <Underline className="w-4 h-4" />
           </button>
 
           <span className="w-px h-5 bg-zinc-800 mx-1" />
@@ -107,30 +108,30 @@ export default function RichTextEditor({
           <button
             type="button"
             onClick={() => executeCommand('formatBlock', 'h2')}
-            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center font-black text-xs font-oswald"
+            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center"
             title="Tiêu đề lớn (H2)"
           >
-            H2
+            <Heading2 className="w-4 h-4" />
           </button>
 
           {/* H3 */}
           <button
             type="button"
             onClick={() => executeCommand('formatBlock', 'h3')}
-            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center font-bold text-xs font-oswald"
+            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center"
             title="Tiêu đề nhỏ (H3)"
           >
-            H3
+            <Heading3 className="w-4 h-4" />
           </button>
 
           {/* P */}
           <button
             type="button"
             onClick={() => executeCommand('formatBlock', 'p')}
-            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center text-xs"
+            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center"
             title="Đoạn văn (P)"
           >
-            P
+            <Pilcrow className="w-4 h-4" />
           </button>
 
           <span className="w-px h-5 bg-zinc-800 mx-1" />
@@ -139,20 +140,22 @@ export default function RichTextEditor({
           <button
             type="button"
             onClick={() => executeCommand('insertUnorderedList')}
-            className="p-1.5 px-2.5 h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center text-xs font-semibold gap-1"
+            className="p-1.5 px-2.5 h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center text-xs font-semibold gap-1.5"
             title="Danh sách dấu chấm"
           >
-            <span className="text-sm">•</span> Danh sách
+            <List className="w-4 h-4" />
+            <span className="hidden sm:inline">Danh sách</span>
           </button>
 
           {/* Ordered List */}
           <button
             type="button"
             onClick={() => executeCommand('insertOrderedList')}
-            className="p-1.5 px-2.5 h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center text-xs font-semibold gap-1"
+            className="p-1.5 px-2.5 h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center text-xs font-semibold gap-1.5"
             title="Danh sách số"
           >
-            <span className="text-[10px]">1.</span> Thứ tự
+            <ListOrdered className="w-4 h-4" />
+            <span className="hidden sm:inline">Thứ tự</span>
           </button>
 
           <span className="w-px h-5 bg-zinc-800 mx-1" />
@@ -161,30 +164,31 @@ export default function RichTextEditor({
           <button
             type="button"
             onClick={addLink}
-            className="p-1.5 px-2 h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center text-xs font-bold gap-1"
+            className="p-1.5 px-2 h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center text-xs font-bold gap-1.5"
             title="Chèn liên kết"
           >
-            🔗 Link
+            <LinkIcon className="w-4 h-4" />
+            <span className="hidden sm:inline">Link</span>
           </button>
 
           {/* Quote block */}
           <button
             type="button"
             onClick={() => executeCommand('formatBlock', 'blockquote')}
-            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center text-sm font-serif"
+            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center"
             title="Trích dẫn"
           >
-            “
+            <Quote className="w-4 h-4" />
           </button>
 
           {/* Clear Format */}
           <button
             type="button"
             onClick={() => executeCommand('removeFormat')}
-            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center text-xs"
+            className="p-1.5 min-w-[32px] h-8 rounded-lg text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-95 transition-all flex items-center justify-center"
             title="Xóa định dạng"
           >
-            🧹
+            <Eraser className="w-4 h-4" />
           </button>
         </div>
 
@@ -192,9 +196,13 @@ export default function RichTextEditor({
         <button
           type="button"
           onClick={() => setIsVisual(!isVisual)}
-          className="px-3.5 h-8 rounded-lg text-[10px] font-black font-oswald uppercase tracking-widest transition-all border border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-primary hover:border-primary/20 hover:bg-zinc-900 active:scale-95"
+          className="px-3.5 h-8 rounded-lg text-[10px] font-black font-oswald uppercase tracking-widest transition-all border border-zinc-800 bg-zinc-950 text-zinc-400 hover:text-primary hover:border-primary/20 hover:bg-zinc-900 active:scale-95 flex items-center justify-center"
         >
-          {isVisual ? '💻 HTML Code' : '👁 Visual Editor'}
+          {isVisual ? (
+            <span className="flex items-center gap-1.5"><Code className="w-3.5 h-3.5" /> HTML Code</span>
+          ) : (
+            <span className="flex items-center gap-1.5"><Eye className="w-3.5 h-3.5" /> Visual Editor</span>
+          )}
         </button>
       </div>
 

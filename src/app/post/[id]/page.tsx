@@ -6,6 +6,7 @@ import PublicLayout from '@/components/PublicLayout';
 import PostCard from '@/components/PostCard';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
+import { ChevronRight, Eye, Clock, ArrowLeft, ArrowRight } from 'lucide-react';
 
 interface Comment {
   id: string;
@@ -134,15 +135,11 @@ export default function PostDetailPage({ params }: { params: Promise<{ id: strin
               {/* Breadcrumb */}
               <nav className="flex items-center gap-2 text-xs uppercase font-bold tracking-wider font-plus-jakarta text-zinc-500">
                 <Link href="/" className="hover:text-primary transition-colors">Trang Chủ</Link>
-                <svg className="w-3.5 h-3.5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                </svg>
+                <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
                 <Link href={`/category/${article.categorySlug}`} className="hover:text-primary transition-colors">
                   {article.categoryName}
                 </Link>
-                <svg className="w-3.5 h-3.5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                </svg>
+                <ChevronRight className="w-3.5 h-3.5 text-zinc-400" />
                 <span className="text-zinc-400 dark:text-zinc-500 line-clamp-1 max-w-[150px] sm:max-w-xs">{article.title}</span>
               </nav>
 
@@ -181,9 +178,9 @@ export default function PostDetailPage({ params }: { params: Promise<{ id: strin
                   <span className="text-[10px] text-zinc-400">{formattedTime}</span>
                 </div>
                 <div className="h-8 w-px bg-border-base hidden sm:block" />
-                <div className="flex items-center gap-4 font-bold uppercase tracking-wider font-plus-jakarta">
-                  <span>👁 {article.views.toLocaleString()} lượt xem</span>
-                  <span>⏱ {readingTime} phút đọc</span>
+                <div className="flex items-center gap-4 font-bold uppercase tracking-wider font-plus-jakarta text-zinc-500">
+                  <span className="flex items-center gap-1"><Eye className="w-3.5 h-3.5 text-zinc-500" /> {article.views.toLocaleString()} lượt xem</span>
+                  <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-zinc-500" /> {readingTime} phút đọc</span>
                 </div>
               </div>
 
@@ -200,7 +197,9 @@ export default function PostDetailPage({ params }: { params: Promise<{ id: strin
                     href={`/post/${prevArticle.id}`}
                     className="flex flex-col text-left group max-w-xs p-3.5 hover:bg-card-hover rounded-2xl transition-all border border-transparent hover:border-border-base"
                   >
-                    <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider font-plus-jakarta">← Bài Trước</span>
+                    <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider font-plus-jakarta flex items-center gap-1">
+                      <ArrowLeft className="w-3 h-3" /> Bài Trước
+                    </span>
                     <span className="text-sm font-bold text-fg-main group-hover:text-primary transition-colors font-plus-jakarta line-clamp-1 uppercase mt-1">
                       {prevArticle.title}
                     </span>
@@ -214,7 +213,9 @@ export default function PostDetailPage({ params }: { params: Promise<{ id: strin
                     href={`/post/${nextArticle.id}`}
                     className="flex flex-col text-right items-end group max-w-xs p-3.5 hover:bg-card-hover rounded-2xl transition-all border border-transparent hover:border-border-base"
                   >
-                    <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider font-plus-jakarta">Bài Tiếp Theo →</span>
+                    <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider font-plus-jakarta flex items-center gap-1">
+                      Bài Tiếp Theo <ArrowRight className="w-3 h-3" />
+                    </span>
                     <span className="text-sm font-bold text-fg-main group-hover:text-primary transition-colors font-plus-jakarta line-clamp-1 uppercase mt-1">
                       {nextArticle.title}
                     </span>

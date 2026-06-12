@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import PublicLayout from '@/components/PublicLayout';
+import { Loader2, Send } from 'lucide-react';
 
 interface FormData {
   name: string;
@@ -227,17 +228,12 @@ export default function ContactPage() {
                     >
                       {loading ? (
                         <>
-                          <svg className="w-4 h-4 animate-spin text-white" viewBox="0 0 24 24" fill="none">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
-                          </svg>
+                          <Loader2 className="w-4 h-4 animate-spin text-white" />
                           Đang gửi...
                         </>
                       ) : (
                         <>
-                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-                          </svg>
+                          <Send className="w-4 h-4 text-white" />
                           Gửi Tin Nhắn
                         </>
                       )}

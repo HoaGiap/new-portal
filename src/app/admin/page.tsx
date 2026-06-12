@@ -3,6 +3,14 @@
 import { useArticles } from '@/context/ArticlesContext';
 import { CATEGORIES } from '@/data/articles';
 import Link from 'next/link';
+import { FileText, Eye, Tag, CalendarPlus, Plus, Pencil, ExternalLink, Laptop, Plane, Trophy, FlaskConical } from 'lucide-react';
+
+const categoryIcons: Record<string, React.ReactNode> = {
+  'cong-nghe': <Laptop className="w-3.5 h-3.5 inline text-zinc-400" />,
+  'du-lich': <Plane className="w-3.5 h-3.5 inline text-zinc-400" />,
+  'the-thao': <Trophy className="w-3.5 h-3.5 inline text-zinc-400" />,
+  'khoa-hoc': <FlaskConical className="w-3.5 h-3.5 inline text-zinc-400" />,
+};
 
 export default function AdminDashboardPage() {
   const { articles } = useArticles();
@@ -11,7 +19,7 @@ export default function AdminDashboardPage() {
     {
       label: 'Tổng bài viết',
       value: articles.length,
-      icon: '📰',
+      icon: <FileText className="w-5 h-5 text-primary" />,
       color: 'from-zinc-900 to-zinc-950 border border-zinc-800',
       shadow: 'shadow-primary/5',
       accentText: 'text-primary',
@@ -19,7 +27,7 @@ export default function AdminDashboardPage() {
     {
       label: 'Lượt xem',
       value: articles.reduce((sum, a) => sum + a.views, 0).toLocaleString(),
-      icon: '👁',
+      icon: <Eye className="w-5 h-5 text-emerald-400" />,
       color: 'from-zinc-900 to-zinc-950 border border-zinc-800',
       shadow: 'shadow-emerald-500/5',
       accentText: 'text-emerald-400',
@@ -27,7 +35,7 @@ export default function AdminDashboardPage() {
     {
       label: 'Chủ đề',
       value: CATEGORIES.length,
-      icon: '🏷️',
+      icon: <Tag className="w-5 h-5 text-purple-400" />,
       color: 'from-zinc-900 to-zinc-950 border border-zinc-800',
       shadow: 'shadow-purple-500/5',
       accentText: 'text-purple-400',
@@ -39,7 +47,7 @@ export default function AdminDashboardPage() {
         const pub = new Date(a.publishedAt);
         return pub.toDateString() === today.toDateString();
       }).length,
-      icon: '🆕',
+      icon: <CalendarPlus className="w-5 h-5 text-orange-400" />,
       color: 'from-zinc-900 to-zinc-950 border border-zinc-800',
       shadow: 'shadow-orange-500/5',
       accentText: 'text-orange-400',
@@ -72,9 +80,7 @@ export default function AdminDashboardPage() {
           href="/admin/articles/new"
           className="flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary-dark text-black text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-md shadow-primary/10 font-oswald flex-shrink-0"
         >
-          <svg className="w-4 h-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 4v16m8-8H4" />
-          </svg>
+          <Plus className="w-4 h-4 text-black" />
           Thêm bài viết
         </Link>
       </div>
@@ -123,28 +129,24 @@ export default function AdminDashboardPage() {
                   <div className="flex items-center gap-2 mt-0.5 font-oswald">
                     <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">{article.categoryName}</span>
                     <span className="text-zinc-800 font-bold">·</span>
-                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider">👁 {article.views.toLocaleString()} xem</span>
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider flex items-center gap-1 mt-0.5"><Eye className="w-3 h-3 text-zinc-500" /> {article.views.toLocaleString()} xem</span>
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 flex-shrink-0">
                   <Link
                     href={`/post/${article.id}`}
                     target="_blank"
-                    className="p-1.5 rounded-lg border border-zinc-850 bg-zinc-900 text-zinc-400 hover:text-primary hover:border-primary/25 transition-all"
+                    className="p-1.5 rounded-lg border border-zinc-850 bg-zinc-900 text-zinc-400 hover:text-primary hover:border-primary/25 transition-all flex items-center justify-center"
                     title="Xem bài viết"
                   >
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                    </svg>
+                    <ExternalLink className="w-3.5 h-3.5" />
                   </Link>
                   <Link
                     href={`/admin/articles/edit/${article.id}`}
-                    className="p-1.5 rounded-lg border border-zinc-850 bg-zinc-900 text-zinc-400 hover:text-emerald-450 hover:border-emerald-500/25 transition-all"
+                    className="p-1.5 rounded-lg border border-zinc-850 bg-zinc-900 text-zinc-400 hover:text-emerald-450 hover:border-emerald-500/25 transition-all flex items-center justify-center"
                     title="Chỉnh sửa"
                   >
-                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                    </svg>
+                    <Pencil className="w-3.5 h-3.5" />
                   </Link>
                 </div>
               </div>
@@ -170,8 +172,8 @@ export default function AdminDashboardPage() {
               return (
                 <div key={cat.id}>
                   <div className="flex items-center justify-between mb-1.5 font-oswald">
-                    <span className="text-xs font-bold text-zinc-300 uppercase tracking-wider">
-                      {cat.icon} {cat.name}
+                    <span className="text-xs font-bold text-zinc-300 uppercase tracking-wider flex items-center gap-1.5">
+                      {categoryIcons[cat.slug] || cat.icon} {cat.name}
                     </span>
                     <span className="text-xs font-bold text-zinc-500 uppercase tracking-wider">{cat.count} bài</span>
                   </div>
@@ -181,7 +183,7 @@ export default function AdminDashboardPage() {
                       style={{ width: `${percentage}%` }}
                     />
                   </div>
-                  <p className="text-[10px] text-zinc-550 mt-1 font-semibold uppercase tracking-wider font-oswald">👁 {cat.views.toLocaleString()} lượt xem</p>
+                  <p className="text-[10px] text-zinc-550 mt-1 font-semibold uppercase tracking-wider font-oswald flex items-center gap-1"><Eye className="w-3 h-3 text-zinc-500" /> {cat.views.toLocaleString()} lượt xem</p>
                 </div>
               );
             })}

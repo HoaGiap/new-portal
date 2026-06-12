@@ -5,6 +5,14 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { CATEGORIES } from '@/data/articles';
 import { useTheme } from '@/context/ThemeContext';
+import { Search, Sun, Moon, Menu, X, Calendar, Home, Mail, Settings, Laptop, Plane, Trophy, FlaskConical } from 'lucide-react';
+
+const categoryIcons: Record<string, React.ReactNode> = {
+  'cong-nghe': <Laptop className="w-3.5 h-3.5" />,
+  'du-lich': <Plane className="w-3.5 h-3.5" />,
+  'the-thao': <Trophy className="w-3.5 h-3.5" />,
+  'khoa-hoc': <FlaskConical className="w-3.5 h-3.5" />,
+};
 
 export default function Header() {
   const { theme, toggleTheme } = useTheme();
@@ -61,7 +69,7 @@ export default function Header() {
       <div className="border-b border-border-base/40 bg-card/40 dark:bg-zinc-900/20 text-zinc-500 dark:text-zinc-400 text-xs py-2 hidden md:block">
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <span className="flex items-center gap-2 font-medium">
-            📅 Thứ Năm, 12 tháng 6 năm 2026 &nbsp;|&nbsp; Bản tin VietNews 24/7
+            <Calendar className="w-3.5 h-3.5 text-primary" /> Thứ Năm, 12 tháng 6 năm 2026 &nbsp;|&nbsp; Bản tin VietNews 24/7
           </span>
           <span className="flex items-center gap-4">
             <a href="#" className="hover:text-primary transition-colors">Facebook</a>
@@ -107,7 +115,7 @@ export default function Header() {
                     : `text-zinc-500 dark:text-zinc-300 hover:text-fg-main hover:bg-card-hover`
                 }`}
               >
-                <span>{cat.icon}</span>
+                <span className="flex items-center justify-center">{categoryIcons[cat.slug] || cat.icon}</span>
                 <span className={pathname === `/category/${cat.slug}` ? '' : 'group-hover:text-fg-main'}>{cat.name}</span>
               </Link>
             ))}
@@ -128,28 +136,22 @@ export default function Header() {
             {/* Search Trigger */}
             <button
               onClick={() => setSearchOpen(true)}
-              className="p-2.5 rounded-xl text-zinc-600 dark:text-zinc-300 hover:bg-card-hover border border-transparent hover:border-border-base transition-all duration-300"
+              className="p-2.5 rounded-xl text-zinc-600 dark:text-zinc-300 hover:bg-card-hover border border-transparent hover:border-border-base transition-all duration-300 flex items-center justify-center"
               aria-label="Search"
             >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <Search className="w-5 h-5" />
             </button>
 
             {/* Dark/Light Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2.5 rounded-xl text-zinc-600 dark:text-zinc-300 hover:bg-card-hover border border-transparent hover:border-border-base transition-all duration-300"
+              className="p-2.5 rounded-xl text-zinc-600 dark:text-zinc-300 hover:bg-card-hover border border-transparent hover:border-border-base transition-all duration-300 flex items-center justify-center"
               aria-label="Toggle Theme"
             >
               {theme === 'dark' ? (
-                <svg className="w-5 h-5 transition-transform duration-500 hover:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m12.728 0l-.707-.707M6.343 6.343l-.707-.707m12.728 12.728A9 9 0 115.636 5.636a9 9 0 0112.728 12.728z" />
-                </svg>
+                <Sun className="w-5 h-5 transition-transform duration-500 hover:rotate-45" />
               ) : (
-                <svg className="w-5 h-5 transition-transform duration-500 hover:-rotate-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-                </svg>
+                <Moon className="w-5 h-5 transition-transform duration-500 hover:-rotate-12" />
               )}
             </button>
 
@@ -158,20 +160,16 @@ export default function Header() {
               href="/admin"
               className="hidden md:flex items-center gap-1.5 px-4 py-2 bg-gradient-to-r from-primary to-accent hover:opacity-90 text-white text-xs font-bold uppercase tracking-wider rounded-xl transition-all shadow-md font-plus-jakarta"
             >
-              Admin
+              <Settings className="w-3.5 h-3.5" /> Admin
             </Link>
 
             {/* Hamburger (Mobile Menu Toggle) */}
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="lg:hidden p-2.5 rounded-xl text-zinc-600 dark:text-zinc-300 hover:bg-card-hover border border-border-base transition-all duration-300"
+              className="lg:hidden p-2.5 rounded-xl text-zinc-600 dark:text-zinc-300 hover:bg-card-hover border border-border-base transition-all duration-300 flex items-center justify-center"
               aria-label="Toggle Menu"
             >
-              <div className="w-5 space-y-1.5">
-                <span className={`block h-0.5 bg-current transition-all ${menuOpen ? 'rotate-45 translate-y-2' : ''}`} />
-                <span className={`block h-0.5 bg-current transition-all ${menuOpen ? 'opacity-0' : ''}`} />
-                <span className={`block h-0.5 bg-current transition-all ${menuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
-              </div>
+              {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
           </div>
         </div>
@@ -188,7 +186,7 @@ export default function Header() {
             href="/"
             className="flex items-center gap-2 px-3 py-2 rounded-xl text-zinc-700 dark:text-zinc-200 hover:bg-card-hover font-bold font-plus-jakarta text-xs uppercase tracking-wider"
           >
-            🏠 Trang Chủ
+            <Home className="w-4 h-4 text-zinc-400" /> Trang Chủ
           </Link>
           {CATEGORIES.map((cat) => (
             <Link
@@ -196,7 +194,7 @@ export default function Header() {
               href={`/category/${cat.slug}`}
               className="flex items-center gap-2 px-3 py-2 rounded-xl text-zinc-700 dark:text-zinc-200 hover:bg-card-hover font-bold font-plus-jakarta text-xs uppercase tracking-wider"
             >
-              <span>{cat.icon}</span>
+              <span className="flex items-center justify-center text-zinc-400">{categoryIcons[cat.slug] || cat.icon}</span>
               <span>{cat.name}</span>
             </Link>
           ))}
@@ -204,13 +202,13 @@ export default function Header() {
             href="/contact"
             className="flex items-center gap-2 px-3 py-2 rounded-xl text-zinc-700 dark:text-zinc-200 hover:bg-card-hover font-bold font-plus-jakarta text-xs uppercase tracking-wider"
           >
-            📧 Liên Hệ
+            <Mail className="w-4 h-4 text-zinc-400" /> Liên Hệ
           </Link>
           <Link
             href="/admin"
             className="flex items-center gap-2 px-3 py-3 rounded-xl bg-gradient-to-r from-primary to-accent text-white font-black font-plus-jakarta text-xs uppercase tracking-wider justify-center shadow-lg"
           >
-            ⚙️ Admin Panel
+            <Settings className="w-4 h-4 text-white" /> Admin Panel
           </Link>
         </div>
       </div>
@@ -220,12 +218,10 @@ export default function Header() {
         <div className="fixed inset-0 z-100 flex items-center justify-center p-6 bg-background/95 backdrop-blur-lg animate-fade-in">
           <button
             onClick={() => setSearchOpen(false)}
-            className="absolute top-6 right-6 p-3 rounded-full hover:bg-card-hover border border-border-base/55 text-zinc-500 hover:text-fg-main transition-all duration-300"
+            className="absolute top-6 right-6 p-3 rounded-full hover:bg-card-hover border border-border-base/55 text-zinc-500 hover:text-fg-main transition-all duration-300 flex items-center justify-center"
             aria-label="Close search"
           >
-            <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
-            </svg>
+            <X className="w-6 h-6" />
           </button>
 
           <div className="max-w-2xl w-full text-center space-y-6">
@@ -240,12 +236,10 @@ export default function Header() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Nhập từ khóa cần tìm..."
-                className="w-full px-6 py-4 pl-14 pr-24 bg-card border border-border-base rounded-2xl text-fg-main placeholder-zinc-550 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 text-lg shadow-xl"
+                className="w-full px-6 py-4 pl-14 pr-24 bg-card border border-border-base rounded-2xl text-fg-main placeholder-zinc-500 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 text-lg shadow-xl"
                 autoFocus
               />
-              <svg className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-6 h-6 text-zinc-400" />
               <button
                 type="submit"
                 className="absolute right-3 top-1/2 -translate-y-1/2 px-5 py-2 bg-gradient-to-r from-primary to-accent hover:opacity-95 text-white font-bold text-sm rounded-xl transition-all shadow-md font-plus-jakarta"
