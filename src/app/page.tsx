@@ -31,17 +31,17 @@ export default function HomePage() {
             alt={featured.title}
             className="absolute inset-0 w-full h-full object-cover opacity-65 dark:opacity-45"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent hidden lg:block" />
+          <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/45 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-zinc-950/80 via-transparent to-transparent hidden lg:block" />
           
           <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 w-full text-center lg:text-left flex flex-col items-center lg:items-start gap-6">
             <span className="px-3 py-1 bg-gradient-to-r from-primary to-accent text-white text-[11px] font-black uppercase tracking-wider rounded-xl shadow-lg glow-primary font-plus-jakarta">
               {featured.categoryName}
             </span>
-            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-fg-main leading-tight max-w-4xl font-plus-jakarta uppercase tracking-tight">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-tight max-w-4xl font-plus-jakarta uppercase tracking-tight">
               {featured.title}
             </h1>
-            <p className="text-zinc-650 dark:text-zinc-300 text-base md:text-lg max-w-2xl leading-relaxed font-medium">
+            <p className="text-zinc-300 text-base md:text-lg max-w-2xl leading-relaxed font-medium">
               {featured.summary}
             </p>
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 mt-2">
@@ -53,7 +53,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/search"
-                className="px-6 py-3.5 bg-card hover:bg-card-hover border border-border-base text-fg-main font-bold text-xs uppercase tracking-wider rounded-xl transition-all font-plus-jakarta"
+                className="px-6 py-3.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all font-plus-jakarta backdrop-blur-sm"
               >
                 Tìm Kiếm Tin Tức
               </Link>
