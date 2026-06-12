@@ -50,24 +50,26 @@
   box-sizing: border-box;
 }
 
-html {
-  scroll-behavior: smooth;
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
 
-body {
-  background-color: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-inter), sans-serif;
-  transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
-  line-height: 1.6;
-}
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), sans-serif;
+    transition: background-color 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.3s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.3s ease;
+    line-height: 1.6;
+  }
 
-/* Headings use Plus Jakarta Sans */
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-plus-jakarta), sans-serif;
-  letter-spacing: -0.025em;
-  font-weight: 800;
-  color: var(--text-primary);
+  /* Headings use Plus Jakarta Sans */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-plus-jakarta), sans-serif;
+    letter-spacing: -0.025em;
+    font-weight: 800;
+    color: var(--text-primary);
+  }
 }
 
 /* Scrollbar */
