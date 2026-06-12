@@ -22,7 +22,7 @@ export default function Footer() {
                 <span className="text-xl font-black text-primary tracking-tight font-oswald">News</span>
               </div>
             </Link>
-            <p className="text-zinc-450 text-xs leading-relaxed mb-5">
+            <p className="text-zinc-400 text-xs leading-relaxed mb-5">
               Cập nhật tin tức mới nhất, chính xác và nhanh nhất về Công nghệ, Du lịch, Thể thao và Khoa học.
             </p>
             <div className="flex gap-2.5">
@@ -84,7 +84,7 @@ export default function Footer() {
           {/* Newsletter */}
           <div>
             <h3 className="text-white font-bold mb-4 text-xs uppercase tracking-wider font-oswald">Nhận Bản Tin</h3>
-            <p className="text-zinc-450 text-xs mb-4 leading-relaxed">Đăng ký nhận tin tức nóng hổi được biên soạn gửi trực tiếp đến hộp thư của bạn mỗi ngày.</p>
+            <p className="text-zinc-400 text-xs mb-4 leading-relaxed">Đăng ký nhận tin tức nóng hổi được biên soạn gửi trực tiếp đến hộp thư của bạn mỗi ngày.</p>
             <div className="flex flex-col gap-2">
               <input
                 type="email"
@@ -100,7 +100,7 @@ export default function Footer() {
 
         {/* Bottom copyright section */}
         <div className="mt-12 pt-6 border-t border-zinc-900 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-zinc-650 text-xs font-semibold">
+          <p className="text-zinc-500 text-xs font-semibold">
             © {new Date().getFullYear()} <span className="text-primary">VietNews</span>. Mọi quyền được bảo lưu.
           </p>
           <div className="flex gap-5">

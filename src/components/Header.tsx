@@ -92,7 +92,7 @@ export default function Header() {
               className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all font-plus-jakarta ${
                 pathname === '/'
                   ? 'bg-primary/10 text-primary'
-                  : 'text-zinc-650 dark:text-zinc-300 hover:text-fg-main hover:bg-card-hover'
+                  : 'text-zinc-500 dark:text-zinc-300 hover:text-fg-main hover:bg-card-hover'
               }`}
             >
               Trang Chủ
@@ -101,10 +101,10 @@ export default function Header() {
               <Link
                 key={cat.id}
                 href={`/category/${cat.slug}`}
-                className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all font-plus-jakarta flex items-center gap-1.5 ${
+                className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all font-plus-jakarta flex items-center gap-1.5 group ${
                   pathname === `/category/${cat.slug}`
-                    ? activeCategoryBg[cat.slug] || 'bg-primary/10 text-primary'
-                    : `text-zinc-650 dark:text-zinc-300 hover:text-fg-main hover:bg-card-hover`
+                    ? activeCategoryBg[cat.slug] || 'bg-primary/10 text-primary font-black'
+                    : `text-zinc-500 dark:text-zinc-300 hover:text-fg-main hover:bg-card-hover`
                 }`}
               >
                 <span>{cat.icon}</span>
@@ -116,7 +116,7 @@ export default function Header() {
               className={`px-3 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all font-plus-jakarta ${
                 pathname === '/contact'
                   ? 'bg-primary/10 text-primary'
-                  : 'text-zinc-650 dark:text-zinc-300 hover:text-fg-main hover:bg-card-hover'
+                  : 'text-zinc-500 dark:text-zinc-300 hover:text-fg-main hover:bg-card-hover'
               }`}
             >
               Liên Hệ
@@ -264,7 +264,7 @@ export default function Header() {
                     router.push(`/category/${cat.slug}`);
                     setSearchOpen(false);
                   }}
-                  className="px-3.5 py-1.5 bg-card hover:bg-card-hover border border-border-base text-zinc-650 dark:text-zinc-300 hover:text-primary text-[10px] font-black uppercase tracking-wider font-plus-jakarta rounded-xl transition-all"
+                  className="px-3.5 py-1.5 bg-card hover:bg-card-hover border border-border-base text-zinc-500 dark:text-zinc-300 hover:text-primary text-[10px] font-black uppercase tracking-wider font-plus-jakarta rounded-xl transition-all"
                 >
                   {cat.icon} {cat.name}
                 </button>

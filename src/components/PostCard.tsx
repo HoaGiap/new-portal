@@ -95,8 +95,8 @@ export default function PostCard({ article, variant = 'default', index = 0 }: Po
               {article.title}
             </h2>
           </Link>
-          <p className="text-zinc-250 text-sm line-clamp-2 mb-4 leading-relaxed font-medium">{article.summary}</p>
-          <div className="flex items-center justify-between text-zinc-350 text-xs border-t border-white/10 pt-3">
+          <p className="text-zinc-300 text-sm line-clamp-2 mb-4 leading-relaxed font-medium">{article.summary}</p>
+          <div className="flex items-center justify-between text-zinc-400 text-xs border-t border-white/10 pt-3">
             <span className="flex items-center gap-2">
               <span className={`w-6 h-6 rounded-full bg-gradient-to-tr ${colors.bg} flex items-center justify-center text-white text-[10px] font-black`}>
                 {article.author[0]}
@@ -127,7 +127,7 @@ export default function PostCard({ article, variant = 'default', index = 0 }: Po
             {article.title}
           </h3>
         </Link>
-        <div className="flex items-center gap-3 mt-2 text-zinc-550 text-xs">
+        <div className="flex items-center gap-3 mt-2 text-zinc-500 text-xs">
           <span>📅 {formatDate(article.publishedAt)}</span>
           <span>•</span>
           <span>👁 {formatViews(article.views)} xem</span>
