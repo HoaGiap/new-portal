@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { CATEGORIES } from '@/data/articles';
+import RichTextEditor from './RichTextEditor';
 
 interface ArticleFormData {
   title: string;
@@ -206,16 +207,16 @@ export default function ArticleForm({ initialData, onSubmit, isEdit = false }: A
       <div>
         <label className="block text-xs font-bold uppercase tracking-wider font-oswald text-zinc-300 mb-1.5">
           Nội dung bài viết <span className="text-red-500 font-sans">*</span>
-          <span className="text-zinc-550 text-[10px] ml-2 font-bold normal-case font-sans tracking-normal">(Hỗ trợ HTML cơ bản: &lt;p&gt;, &lt;h2&gt;, &lt;strong&gt;)</span>
+          <span className="text-zinc-550 text-[10px] ml-2 font-bold normal-case font-sans tracking-normal">(Soạn thảo trực quan hoặc sửa HTML)</span>
         </label>
-        <textarea
-          id="form-content"
-          name="content"
+        <RichTextEditor
           value={form.content}
-          onChange={handleChange}
-          rows={12}
-          placeholder={`<p>Nhập nội dung bài viết tại đây...</p>\n<h2>Phần 1</h2>\n<p>Chi tiết phần 1...</p>`}
-          className={`${inputClass('content')} resize-y font-mono text-xs leading-relaxed`}
+          onChange={(newContent) => {
+            setForm((prev) => ({ ...prev, content: newContent }));
+            if (errors.content) setErrors((prev) => ({ ...prev, content: '' }));
+          }}
+          placeholder="Nhập nội dung bài viết..."
+          error={errors.content}
         />
         {errors.content && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.content}</p>}
         <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider font-oswald mt-1">{form.content.length} ký tự</p>

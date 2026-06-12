@@ -56,39 +56,40 @@ export default function ContactPage() {
   return (
     <PublicLayout>
       {/* Hero */}
-      <div className="bg-gradient-to-b from-primary/5 to-zinc-950 py-12 px-4 border-b border-zinc-900 relative overflow-hidden text-center">
+      <div className="bg-gradient-to-b from-primary/5 to-background py-12 px-6 border-b border-border-base/70 relative overflow-hidden text-center">
         <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-gradient-to-br from-primary to-primary-dark text-black text-2xl mb-4 shadow-lg shadow-primary/20 font-black">
+        <div className="max-w-4xl mx-auto relative z-10 space-y-3">
+          <div className="inline-flex items-center justify-center w-14 h-14 rounded-xl bg-card border border-border-base text-black dark:text-white text-2xl mb-2 shadow-sm">
             ✉️
           </div>
-          <h1 className="text-3xl font-black text-white mb-2 font-oswald uppercase tracking-tight">Liên Hệ Với Chúng Tôi</h1>
-          <p className="text-zinc-400 text-xs font-semibold uppercase tracking-wider font-oswald max-w-sm mx-auto">
-            Bạn có câu hỏi, góp ý hoặc muốn hợp tác? Hãy để lại tin nhắn cho VietNews!
+          <h1 className="text-3xl font-black text-fg-main mb-2 font-plus-jakarta uppercase tracking-tight">Liên Hệ Với Chúng Tôi</h1>
+          <p className="text-zinc-550 dark:text-zinc-400 text-xs font-semibold uppercase tracking-wider font-plus-jakarta max-w-sm mx-auto leading-relaxed">
+            Bạn có câu hỏi, góp ý hoặc muốn hợp tác? Hãy gửi lời nhắn đến tòa soạn VietNews!
           </p>
         </div>
       </div>
 
-      <section className="py-12 px-4 bg-zinc-950">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Contact Info */}
-            <div className="space-y-5">
+      <section className="py-12 px-6 bg-background">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+            
+            {/* Left Info & Map */}
+            <div className="lg:col-span-5 space-y-6">
               <div>
-                <div className="flex items-center gap-3 mb-5 pb-3 border-b border-zinc-900">
+                <div className="flex items-center gap-3 mb-5 pb-3 border-b border-border-base/70">
                   <div className="w-1.5 h-6 bg-primary rounded-full" />
-                  <h2 className="font-bold text-white text-base font-oswald uppercase tracking-tight">Thông Tin Liên Hệ</h2>
+                  <h2 className="font-bold text-fg-main text-base font-plus-jakarta uppercase tracking-tight">Thông Tin Liên Hệ</h2>
                 </div>
                 <div className="space-y-3">
                   {contactInfo.map((item) => (
-                    <div key={item.label} className="layer-1 rounded-xl p-3.5 hover:border-primary/30 transition-all flex items-start gap-3 shadow-md">
+                    <div key={item.label} className="bg-card border border-border-base rounded-2xl p-4 hover:border-primary/30 transition-all flex items-start gap-3.5 shadow-sm">
                       <span className="text-xl flex-shrink-0 mt-0.5">{item.icon}</span>
                       <div className="min-w-0">
-                        <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider font-oswald mb-0.5">{item.label}</p>
+                        <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider font-plus-jakarta mb-0.5">{item.label}</p>
                         {item.href ? (
-                          <a href={item.href} className="text-zinc-200 hover:text-primary text-sm font-semibold transition-colors truncate block">{item.value}</a>
+                          <a href={item.href} className="text-fg-main hover:text-primary text-sm font-semibold transition-colors truncate block">{item.value}</a>
                         ) : (
-                          <p className="text-zinc-200 text-sm font-semibold truncate">{item.value}</p>
+                          <p className="text-fg-main text-sm font-semibold truncate">{item.value}</p>
                         )}
                       </div>
                     </div>
@@ -96,58 +97,47 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Social */}
-              <div className="layer-1 rounded-xl p-4 shadow-md">
-                <p className="text-xs font-bold text-white mb-3 uppercase tracking-wider font-oswald">Theo Dõi Chúng Tôi</p>
-                <div className="grid grid-cols-2 gap-2">
-                  {[
-                    { name: 'Facebook', color: 'hover:text-primary border-zinc-800 hover:border-primary/30', icon: 'FB' },
-                    { name: 'YouTube', color: 'hover:text-red-400 border-zinc-800 hover:border-red-450/30', icon: 'YT' },
-                    { name: 'Twitter', color: 'hover:text-sky-400 border-zinc-800 hover:border-sky-450/30', icon: 'TW' },
-                    { name: 'Instagram', color: 'hover:text-pink-400 border-zinc-800 hover:border-pink-450/30', icon: 'IG' },
-                  ].map((s) => (
-                    <a
-                      key={s.name}
-                      href="#"
-                      className={`flex items-center justify-center gap-1.5 px-3 py-2 bg-zinc-950 border ${s.color} rounded-lg text-zinc-400 text-[10px] font-black uppercase tracking-wider font-oswald transition-all`}
-                    >
-                      <span className="opacity-80">{s.icon}</span>
-                      <span>{s.name}</span>
-                    </a>
-                  ))}
-                </div>
+              {/* Map block */}
+              <div className="bg-card border border-border-base rounded-2xl p-2 shadow-sm overflow-hidden h-64 relative group">
+                <iframe
+                  title="VietNews Location Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.460232426297!2d106.70100201480076!3d10.776019392321852!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3919460232426297%3A0x10f76019392321852!2zTmd1eeG7hW4gSHXhu4ksIELhur5uIE5naMOpLCBRdeG6rW4gMSwgVGjDoG5oIHBo4buRIEjhu5MgQ2jDrSBNaW5o!5e0!3m2!1svi!2svn!4v1620000000000!5m2!1svi!2svn"
+                  className="w-full h-full rounded-xl border-0"
+                  allowFullScreen={false}
+                  loading="lazy"
+                />
               </div>
             </div>
 
-            {/* Form */}
-            <div className="lg:col-span-2">
-              <div className="layer-1 rounded-2xl p-6 shadow-xl">
+            {/* Right Form */}
+            <div className="lg:col-span-7">
+              <div className="bg-card border border-border-base rounded-3xl p-6 md:p-8 shadow-premium">
                 {submitted ? (
-                  <div className="text-center py-12 animate-fade-in max-w-sm mx-auto">
-                    <div className="text-5xl mb-4">🎉</div>
-                    <h3 className="text-xl font-bold text-white mb-2 font-oswald uppercase">Gửi Thành Công!</h3>
-                    <p className="text-zinc-400 text-xs mb-6 leading-relaxed">
-                      Cảm ơn bạn đã liên hệ với ban biên tập VietNews! Chúng tôi đã nhận được tin nhắn và sẽ phản hồi sớm nhất.
+                  <div className="text-center py-12 animate-fade-in max-w-sm mx-auto space-y-4">
+                    <div className="text-5xl">🎉</div>
+                    <h3 className="text-xl font-bold text-fg-main font-plus-jakarta uppercase">Gửi Thành Công!</h3>
+                    <p className="text-zinc-500 dark:text-zinc-400 text-xs leading-relaxed">
+                      Cảm ơn bạn đã đóng góp ý kiến cho VietNews! Chúng tôi đã tiếp nhận và phản hồi tới bạn trong thời gian sớm nhất.
                     </p>
                     <button
                       onClick={() => setSubmitted(false)}
-                      className="px-6 py-2.5 bg-primary hover:bg-primary-dark text-black text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-md font-oswald"
+                      className="px-6 py-2.5 bg-gradient-to-r from-primary to-accent hover:opacity-95 text-white text-xs font-black uppercase tracking-wider rounded-xl transition-all shadow-md font-plus-jakarta"
                     >
                       Gửi Tin Nhắn Khác
                     </button>
                   </div>
                 ) : (
-                  <form onSubmit={handleSubmit} noValidate className="space-y-4">
-                    <div className="flex items-center gap-3 mb-5 pb-3 border-b border-zinc-850">
+                  <form onSubmit={handleSubmit} noValidate className="space-y-5">
+                    <div className="flex items-center gap-3 mb-3 pb-3 border-b border-border-base/70">
                       <div className="w-1.5 h-6 bg-primary rounded-full" />
-                      <h2 className="font-bold text-white text-base font-oswald uppercase tracking-tight">Gửi Tin Nhắn</h2>
+                      <h2 className="font-bold text-fg-main text-base font-plus-jakarta uppercase tracking-tight">Gửi Tin Nhắn</h2>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {/* Name */}
                       <div>
-                        <label htmlFor="contact-name" className="block text-xs font-bold uppercase tracking-wider font-oswald text-zinc-300 mb-1.5">
-                          Họ và tên <span className="text-red-550 font-sans">*</span>
+                        <label htmlFor="contact-name" className="block text-[10px] font-bold uppercase tracking-wider font-plus-jakarta text-zinc-500 mb-1.5">
+                          Họ và tên <span className="text-red-500 font-sans">*</span>
                         </label>
                         <input
                           id="contact-name"
@@ -156,8 +146,8 @@ export default function ContactPage() {
                           value={form.name}
                           onChange={handleChange}
                           placeholder="Nguyễn Văn A"
-                          className={`w-full px-4 py-2.5 bg-zinc-950 border rounded-xl text-white placeholder-zinc-550 focus:outline-none focus:ring-2 transition-all text-sm font-medium ${
-                            errors.name ? 'border-red-500 focus:ring-red-500/20' : 'border-zinc-800 focus:border-primary focus:ring-primary/10'
+                          className={`w-full px-4 py-2.5 bg-card border rounded-xl text-fg-main placeholder-zinc-550 focus:outline-none focus:ring-4 focus:ring-primary/10 text-sm font-semibold ${
+                            errors.name ? 'border-red-500' : 'border-border-base focus:border-primary'
                           }`}
                         />
                         {errors.name && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.name}</p>}
@@ -165,8 +155,8 @@ export default function ContactPage() {
 
                       {/* Email */}
                       <div>
-                        <label htmlFor="contact-email" className="block text-xs font-bold uppercase tracking-wider font-oswald text-zinc-300 mb-1.5">
-                          Email <span className="text-red-550 font-sans">*</span>
+                        <label htmlFor="contact-email" className="block text-[10px] font-bold uppercase tracking-wider font-plus-jakarta text-zinc-500 mb-1.5">
+                          Email <span className="text-red-500 font-sans">*</span>
                         </label>
                         <input
                           id="contact-email"
@@ -175,8 +165,8 @@ export default function ContactPage() {
                           value={form.email}
                           onChange={handleChange}
                           placeholder="email@example.com"
-                          className={`w-full px-4 py-2.5 bg-zinc-950 border rounded-xl text-white placeholder-zinc-550 focus:outline-none focus:ring-2 transition-all text-sm font-medium ${
-                            errors.email ? 'border-red-500 focus:ring-red-500/20' : 'border-zinc-800 focus:border-primary focus:ring-primary/10'
+                          className={`w-full px-4 py-2.5 bg-card border rounded-xl text-fg-main placeholder-zinc-550 focus:outline-none focus:ring-4 focus:ring-primary/10 text-sm font-semibold ${
+                            errors.email ? 'border-red-500' : 'border-border-base focus:border-primary'
                           }`}
                         />
                         {errors.email && <p className="text-red-500 text-xs mt-1.5 font-medium">{errors.email}</p>}
@@ -185,16 +175,16 @@ export default function ContactPage() {
 
                     {/* Subject */}
                     <div>
-                      <label htmlFor="contact-subject" className="block text-xs font-bold uppercase tracking-wider font-oswald text-zinc-300 mb-1.5">
-                        Chủ đề <span className="text-red-550 font-sans">*</span>
+                      <label htmlFor="contact-subject" className="block text-[10px] font-bold uppercase tracking-wider font-plus-jakarta text-zinc-500 mb-1.5">
+                        Chủ đề <span className="text-red-500 font-sans">*</span>
                       </label>
                       <select
                         id="contact-subject"
                         name="subject"
                         value={form.subject}
                         onChange={handleChange}
-                        className={`w-full px-4 py-2.5 bg-zinc-950 border rounded-xl text-white focus:outline-none focus:ring-2 transition-all text-sm font-semibold font-oswald uppercase tracking-wider ${
-                          errors.subject ? 'border-red-500 focus:ring-red-500/20' : 'border-zinc-800 focus:border-primary focus:ring-primary/10'
+                        className={`w-full px-4 py-2.5 bg-card border rounded-xl text-fg-main focus:outline-none focus:ring-4 focus:ring-primary/10 text-sm font-semibold font-plus-jakarta uppercase tracking-wider ${
+                          errors.subject ? 'border-red-500' : 'border-border-base focus:border-primary'
                         }`}
                       >
                         <option value="" disabled>Chọn chủ đề...</option>
@@ -209,8 +199,8 @@ export default function ContactPage() {
 
                     {/* Message */}
                     <div>
-                      <label htmlFor="contact-message" className="block text-xs font-bold uppercase tracking-wider font-oswald text-zinc-300 mb-1.5">
-                        Nội dung tin nhắn <span className="text-red-550 font-sans">*</span>
+                      <label htmlFor="contact-message" className="block text-[10px] font-bold uppercase tracking-wider font-plus-jakarta text-zinc-500 mb-1.5">
+                        Nội dung tin nhắn <span className="text-red-500 font-sans">*</span>
                       </label>
                       <textarea
                         id="contact-message"
@@ -219,13 +209,13 @@ export default function ContactPage() {
                         onChange={handleChange}
                         placeholder="Nhập nội dung tin nhắn của bạn tại đây..."
                         rows={5}
-                        className={`w-full px-4 py-2.5 bg-zinc-950 border rounded-xl text-white placeholder-zinc-550 focus:outline-none focus:ring-2 transition-all resize-none text-sm font-medium ${
-                          errors.message ? 'border-red-500 focus:ring-red-500/20' : 'border-zinc-800 focus:border-primary focus:ring-primary/10'
+                        className={`w-full px-4 py-2.5 bg-card border rounded-xl text-fg-main placeholder-zinc-550 focus:outline-none focus:ring-4 focus:ring-primary/10 resize-none text-sm font-medium ${
+                          errors.message ? 'border-red-500' : 'border-border-base focus:border-primary'
                         }`}
                       />
                       <div className="flex justify-between items-center mt-1">
                         {errors.message ? <p className="text-red-500 text-xs font-medium">{errors.message}</p> : <span />}
-                        <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider font-oswald">{form.message.length} ký tự</p>
+                        <p className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider font-plus-jakarta">{form.message.length} ký tự</p>
                       </div>
                     </div>
 
@@ -233,11 +223,11 @@ export default function ContactPage() {
                       type="submit"
                       id="contact-submit"
                       disabled={loading}
-                      className="w-full py-3.5 bg-primary hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed text-black font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-md shadow-primary/10 flex items-center justify-center gap-2 font-oswald"
+                      className="w-full py-3.5 bg-gradient-to-r from-primary to-accent hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-md glow-primary flex items-center justify-center gap-2 font-plus-jakarta"
                     >
                       {loading ? (
                         <>
-                          <svg className="w-4 h-4 animate-spin text-black" viewBox="0 0 24 24" fill="none">
+                          <svg className="w-4 h-4 animate-spin text-white" viewBox="0 0 24 24" fill="none">
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"/>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"/>
                           </svg>
@@ -245,7 +235,7 @@ export default function ContactPage() {
                         </>
                       ) : (
                         <>
-                          <svg className="w-4 h-4 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                           </svg>
                           Gửi Tin Nhắn

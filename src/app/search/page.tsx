@@ -49,14 +49,14 @@ function SearchContent() {
   return (
     <PublicLayout>
       {/* Search Hero */}
-      <div className="bg-gradient-to-b from-primary/5 to-zinc-950 py-12 px-4 border-b border-zinc-900 relative overflow-hidden">
+      <div className="bg-gradient-to-b from-primary/5 to-background py-12 px-6 border-b border-border-base/70 relative overflow-hidden text-center">
         <div className="absolute top-0 right-0 w-80 h-80 bg-primary/5 rounded-full blur-3xl pointer-events-none" />
         
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h1 className="text-3xl font-black text-white mb-2 font-oswald uppercase tracking-tight">
+        <div className="max-w-3xl mx-auto text-center relative z-10 space-y-6">
+          <h1 className="text-3xl font-black text-fg-main font-plus-jakarta uppercase tracking-tight">
             🔍 Tìm Kiếm Tin Tức
           </h1>
-          <p className="text-zinc-450 text-xs font-semibold uppercase tracking-wider font-oswald mb-6">Khám phá hàng nghìn bài viết từ nhiều chủ đề</p>
+          <p className="text-zinc-550 dark:text-zinc-400 text-xs font-semibold uppercase tracking-wider font-plus-jakarta">Khám phá hàng nghìn bài viết từ nhiều chủ đề</p>
 
           <form onSubmit={handleSearch} className="flex gap-3 max-w-xl mx-auto">
             <div className="relative flex-1">
@@ -69,14 +69,14 @@ function SearchContent() {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Nhập từ khóa tìm kiếm..."
-                className="w-full pl-11 pr-10 py-3 bg-zinc-950 border border-zinc-800 rounded-xl text-white placeholder-zinc-550 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 text-sm font-medium"
+                className="w-full pl-11 pr-10 py-3 bg-card border border-border-base rounded-2xl text-fg-main placeholder-zinc-550 focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 text-sm font-medium shadow-sm"
                 autoFocus
               />
               {inputValue && (
                 <button
                   type="button"
                   onClick={() => { setInputValue(''); setHasSearched(false); setResults([]); }}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-white text-sm"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-500 hover:text-fg-main text-sm"
                 >
                   ✕
                 </button>
@@ -85,7 +85,7 @@ function SearchContent() {
             <button
               type="submit"
               id="search-btn"
-              className="px-6 py-3 bg-primary hover:bg-primary-dark text-black font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-md shadow-primary/15 font-oswald"
+              className="px-6 py-3 bg-gradient-to-r from-primary to-accent hover:opacity-95 text-white font-black text-xs uppercase tracking-wider rounded-xl transition-all shadow-md glow-primary font-plus-jakarta"
             >
               TÌM KIẾM
             </button>
@@ -93,13 +93,13 @@ function SearchContent() {
 
           {/* Suggestions */}
           {!hasSearched && (
-            <div className="flex flex-wrap justify-center items-center gap-2 mt-5">
-              <span className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider font-oswald">Tìm kiếm phổ biến:</span>
+            <div className="flex flex-wrap justify-center items-center gap-2">
+              <span className="text-zinc-500 text-[10px] font-bold uppercase tracking-wider font-plus-jakarta">Tìm kiếm phổ biến:</span>
               {suggestions.map((s) => (
                 <button
                   key={s}
                   onClick={() => { setInputValue(s); router.push(`/search?q=${encodeURIComponent(s)}`); }}
-                  className="px-3 py-1 bg-zinc-900 hover:bg-primary/10 border border-zinc-800 hover:border-primary/30 text-zinc-350 hover:text-primary text-[10px] font-bold uppercase tracking-wider font-oswald rounded-lg transition-all"
+                  className="px-3.5 py-1.5 bg-card hover:bg-card-hover border border-border-base text-zinc-650 dark:text-zinc-350 hover:text-primary text-[10px] font-bold uppercase tracking-wider font-plus-jakarta rounded-xl transition-all"
                 >
                   {s}
                 </button>
@@ -110,14 +110,14 @@ function SearchContent() {
       </div>
 
       {/* Results */}
-      <section className="py-10 px-4 bg-zinc-950">
+      <section className="py-10 px-6 bg-background">
         <div className="max-w-7xl mx-auto">
           {hasSearched ? (
             <>
               {/* Results header + filter */}
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 pb-4 border-b border-zinc-900">
-                <div className="font-oswald">
-                  <h2 className="text-xl font-bold text-white uppercase tracking-tight">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 mb-8 pb-4 border-b border-border-base/70">
+                <div className="font-plus-jakarta">
+                  <h2 className="text-xl font-black text-fg-main uppercase tracking-tight">
                     {filtered.length > 0 ? (
                       <>Tìm thấy <span className="text-primary">{filtered.length}</span> kết quả cho &ldquo;<span className="text-primary">{initialQuery}</span>&rdquo;</>
                     ) : (
@@ -130,13 +130,13 @@ function SearchContent() {
                 </div>
 
                 {/* Category Filter */}
-                <div className="flex flex-wrap gap-1.5 font-oswald">
+                <div className="flex flex-wrap gap-1.5 font-plus-jakarta">
                   <button
                     onClick={() => setSelectedCategory('all')}
-                    className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all border ${
+                    className={`px-3.5 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all border ${
                       selectedCategory === 'all'
-                        ? 'bg-primary text-black border-primary shadow-md shadow-primary/10'
-                        : 'bg-zinc-900 text-zinc-400 hover:text-white border-zinc-800'
+                        ? 'bg-gradient-to-r from-primary to-accent text-white border-transparent shadow-md'
+                        : 'bg-card text-zinc-650 dark:text-zinc-350 hover:text-fg-main border-border-base'
                     }`}
                   >
                     Tất cả
@@ -145,10 +145,10 @@ function SearchContent() {
                     <button
                       key={c.id}
                       onClick={() => setSelectedCategory(c.slug)}
-                      className={`px-3 py-1.5 rounded-lg text-[10px] font-black uppercase tracking-wider transition-all border ${
+                      className={`px-3.5 py-1.5 rounded-xl text-[10px] font-black uppercase tracking-wider transition-all border ${
                         selectedCategory === c.slug
-                          ? 'bg-primary text-black border-primary shadow-md shadow-primary/10'
-                          : 'bg-zinc-900 text-zinc-400 hover:text-white border-zinc-800'
+                          ? 'bg-gradient-to-r from-primary to-accent text-white border-transparent shadow-md'
+                          : 'bg-card text-zinc-650 dark:text-zinc-350 hover:text-fg-main border-border-base'
                       }`}
                     >
                       {c.icon} {c.name}
@@ -164,19 +164,19 @@ function SearchContent() {
                   ))}
                 </div>
               ) : (
-                <div className="text-center py-16 layer-1 max-w-md mx-auto p-6 rounded-2xl shadow-xl">
+                <div className="text-center py-16 bg-card border border-border-base max-w-md mx-auto p-6 rounded-2xl shadow-premium">
                   <div className="text-5xl mb-4">🔍</div>
-                  <h3 className="text-lg font-bold text-white mb-2 font-oswald uppercase">Không tìm thấy kết quả</h3>
-                  <p className="text-zinc-450 text-xs mb-6 leading-relaxed">Hãy thử tìm kiếm với các từ khóa khác hoặc tham khảo các bài viết nổi bật bên dưới.</p>
+                  <h3 className="text-lg font-bold text-fg-main mb-2 font-plus-jakarta uppercase">Không tìm thấy kết quả</h3>
+                  <p className="text-zinc-500 dark:text-zinc-400 text-xs mb-6 leading-relaxed">Hãy thử tìm kiếm với các từ khóa khác hoặc tham khảo các bài viết nổi bật bên dưới.</p>
                 </div>
               )}
             </>
           ) : (
             /* Popular articles when no search */
             <div>
-              <div className="flex items-center gap-3 mb-8 pb-3 border-b border-zinc-900">
-                <div className="w-1.5 h-7 bg-primary rounded-full" />
-                <h2 className="text-2xl font-black text-white font-oswald uppercase tracking-tight">Bài Viết Phổ Biến Nhất</h2>
+              <div className="flex items-center gap-3 mb-8 pb-3 border-b border-border-base/70">
+                <div className="w-2.5 h-7 bg-primary rounded-full" />
+                <h2 className="text-2xl font-black text-fg-main font-plus-jakarta uppercase tracking-tight">Bài Viết Phổ Biến Nhất</h2>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {popular.map((article, i) => (
@@ -193,7 +193,7 @@ function SearchContent() {
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-zinc-950 flex items-center justify-center"><div className="text-zinc-500 font-bold uppercase tracking-wider font-oswald text-xs">Đang tải...</div></div>}>
+    <Suspense fallback={<div className="min-h-screen bg-background flex items-center justify-center"><div className="text-zinc-550 font-bold uppercase tracking-wider font-plus-jakarta text-xs animate-pulse">Đang tải...</div></div>}>
       <SearchContent />
     </Suspense>
   );

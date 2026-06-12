@@ -1,19 +1,20 @@
 import type { Metadata } from 'next';
-import { Oswald, Poppins } from 'next/font/google';
+import { Plus_Jakarta_Sans, Inter } from 'next/font/google';
 import './globals.css';
 import { ArticlesProvider } from '@/context/ArticlesContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 
-const oswald = Oswald({
-  subsets: ['latin', 'vietnamese'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-oswald',
+const plusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-plus-jakarta-sans',
   display: 'swap',
 });
 
-const poppins = Poppins({
+const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700', '800'],
-  variable: '--font-poppins',
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -35,11 +36,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="vi" className={`${oswald.variable} ${poppins.variable}`}>
-      <body style={{ fontFamily: 'var(--font-poppins), sans-serif' }}>
-        <ArticlesProvider>{children}</ArticlesProvider>
+    <html lang="vi" className={`${plusJakartaSans.variable} ${inter.variable}`}>
+      <body style={{ fontFamily: 'var(--font-inter), sans-serif' }}>
+        <ThemeProvider>
+          <ArticlesProvider>{children}</ArticlesProvider>
+        </ThemeProvider>
       </body>
     </html>
   );
 }
-
